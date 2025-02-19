@@ -12,7 +12,7 @@ const AppLayout = () => {
       {isLoading && <Loader />}
 
       <Header />
-      <main className="mx-auto w-full max-w-3xl overflow-y-auto">
+      <main className="mx-auto w-full overflow-y-auto md:max-w-[85dvw] lg:max-w-[60dvw]">
         <Outlet />
       </main>
       <CartOverview />
