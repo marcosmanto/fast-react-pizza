@@ -1,23 +1,16 @@
 import CartItem from '@/features/cart/CartItem';
-import { clearCart } from '@/features/cart/cartSlice';
+import { clearCart, getCart } from '@/features/cart/cartSlice';
+import EmptyCart from '@/features/cart/EmptyCart';
 import Button from '@/ui/Button';
 import LinkButton from '@/ui/LinkButton';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Cart() {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector(getCart);
   const username = useSelector((state) => state.user.username);
 
-  if (cart.length === 0)
-    return (
-      <div className="pt-3">
-        <LinkButton to="/menu">&larr; Back to menu</LinkButton>
-        <div className="px-4 py-8 text-center text-lg font-bold uppercase">
-          Empty Cart
-        </div>
-      </div>
-    );
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="px-4 py-3">

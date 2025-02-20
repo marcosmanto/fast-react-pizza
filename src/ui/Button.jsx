@@ -9,6 +9,12 @@ function Button({ children, disabled, to, type, onClick }) {
     small: base + ' text-xs md:text-sm px-4 py-2 md:px-5 md:py-2.5 text-xs',
     secondary:
       'px-6 py-[4px] md:py-[11px] text-sm rounded-full font-semibold uppercase tracking-wide text-stone-400 transition-colors duration-300 hover:bg-stone-200 hover:text-stone-500 focus:outline-none focus:ring focus:ring-stone-200 focus:ring-offset-2 active:bg-stone-200 disabled:cursor-not-allowed disabled:bg-yellow-200 disabled:text-stone-500 border-2 border-stone-300',
+    secondarySmall:
+      'px-4 py-1 text-xs rounded-full font-semibold uppercase tracking-wide text-stone-400 transition-colors duration-300 hover:bg-stone-200 hover:text-stone-500 focus:outline-none focus:ring focus:ring-stone-200 focus:ring-offset-2 active:bg-stone-200 disabled:cursor-not-allowed disabled:bg-yellow-200 disabled:text-stone-5 border-2 border-stone-300',
+    primarySmall:
+      'px-4 py-1 text-xs rounded-full font-semibold uppercase tracking-wide text-stone-400 transition-colors duration-300 hover:bg-stone-200 hover:text-stone-500 focus:outline-none focus:ring focus:ring-stone-200 focus:ring-offset-2 active:bg-stone-200 disabled:cursor-not-allowed disabled:bg-yellow-200 disabled:text-stone-5  ' +
+      base +
+      ' px-5 py-1.5',
   };
 
   if (to)
