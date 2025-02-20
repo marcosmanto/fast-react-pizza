@@ -2,12 +2,17 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { formatCurrency } from '@/utils/helpers';
+import {
+  getTotalCardPrice,
+  getTotalCardQuantity,
+} from '@/features/cart/cartSlice';
 
 function CartOverview() {
   const [isAnimating, setIsAnimating] = useState(true);
 
-  const cart = useSelector((state) => state.cart.cart);
-  const numPizzas = cart.length;
+  const totalCardQuantity = useSelector(getTotalCardQuantity);
+  const totalCardPrice = useSelector(getTotalCardPrice);
 
   useEffect(() => {
     document.body.style.overflow = isAnimating ? 'hidden' : '';
@@ -16,7 +21,7 @@ function CartOverview() {
     };
   }, [isAnimating]);
 
-  if (numPizzas === 0) return;
+  if (!totalCardQuantity) return null;
 
   return (
     <motion.div
@@ -31,9 +36,9 @@ function CartOverview() {
     >
       <p className="space-x-4 font-semibold text-stone-300 sm:space-x-6">
         <span>
-          {cart.length} pizza{cart.length > 1 && 's'}
+          {totalCardQuantity} pizza{totalCardQuantity > 1 && 's'}
         </span>
-        <span>$23.45</span>
+        <span>{formatCurrency(totalCardPrice)}</span>
       </p>
       <Link to="/cart">Open cart &rarr;</Link>
     </motion.div>
