@@ -48,7 +48,7 @@ function Order() {
 
       <ul className="m-auto flex max-w-[95%] flex-col gap-y-1 divide-y divide-stone-200">
         {cart.map((item) => (
-          <OrderItem key={item.id} item={item} />
+          <OrderItem key={item.pizzaId} item={item} />
         ))}
       </ul>
 
