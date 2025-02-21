@@ -4,13 +4,20 @@ import {
   getTotalCardPrice,
 } from '@/features/cart/cartSlice';
 import EmptyCart from '@/features/cart/EmptyCart';
+import { fetchAddress } from '@/features/user/userSlice';
 import { createOrder } from '@/services/apiRestaurant';
 import store from '@/store';
 import Button from '@/ui/Button';
 import { formatCurrency } from '@/utils/helpers';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
+import {
+  Form,
+  redirect,
+  useActionData,
+  useLoaderData,
+  useNavigation,
+} from 'react-router-dom';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -19,6 +26,8 @@ const isValidPhone = (str) =>
   );
 
 function CreateOrder() {
+  const address = useLoaderData();
+  console.log(address);
   const [withPriority, setWithPriority] = useState(false);
   const cart = useSelector(getCart);
   const totalCartPrice = useSelector(getTotalCardPrice);
@@ -126,6 +135,11 @@ export async function action({ request }) {
   store.dispatch(clearCart());
 
   return redirect(`/order/${newOrder.id}`);
+}
+
+export async function loader() {
+  const address = await fetchAddress();
+  return address;
 }
 
 export default CreateOrder;
