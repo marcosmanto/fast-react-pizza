@@ -10,7 +10,7 @@ function EmptyCart() {
         Your cart is still empty.
         <br />{' '}
         <span className="mt-1.5 block text-lg font-bold text-yellow-500">
-          <Button to="/menu">Start adding some pizzas :)</Button>
+          <Button to="/menu">Start adding some pizzas 🍕</Button>
         </span>
       </p>
     </div>
