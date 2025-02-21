@@ -4,6 +4,7 @@ import {
   increaseItemQuantity,
 } from '@/features/cart/cartSlice';
 import DeleteItem from '@/features/cart/DeleteItem';
+import UpdateQuantity from '@/features/cart/UpdateQuantity';
 import Button from '@/ui/Button';
 import { formatCurrency } from '@/utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +17,8 @@ function MenuItem({ pizza }) {
   const isInCart = quantity > 0;
 
   return (
-    <li className="flex gap-4 py-2">
+    <li className="relative flex gap-4 py-2">
+      {isInCart && <UpdateQuantity pizzaId={id} currentQuantity={quantity} />}
       <img
         src={imageUrl}
         alt={name}
@@ -27,7 +29,7 @@ function MenuItem({ pizza }) {
         <p className="text-sm capitalize italic text-stone-500">
           {ingredients.join(', ')}
         </p>
-        <div className="mt-auto flex flex-wrap items-center justify-end gap-2">
+        <div className="relative mt-auto flex flex-wrap items-end justify-end gap-2">
           {!soldOut ? (
             <p className="mr-auto text-sm font-medium text-stone-600">
               {formatCurrency(unitPrice)}
@@ -40,7 +42,11 @@ function MenuItem({ pizza }) {
 
           {!soldOut && (
             <>
-              {isInCart && <DeleteItem pizzaId={id} />}
+              {isInCart && (
+                <div className="absolute left-[-106px] top-[-5px] z-10">
+                  <DeleteItem type="secondarySmallFilled" pizzaId={id} />
+                </div>
+              )}
               <Button
                 onClick={() => {
                   if (!isInCart) {

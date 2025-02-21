@@ -5,7 +5,12 @@ export default {
     fontFamily: {
       sans: 'Inter, monospace',
     },
-    extend: {},
+    extend: {
+      screens: {
+        xs: '0px',
+        sm: '585px', // Redefine small breakpoint
+      },
+    },
   },
   plugins: [],
 };

@@ -24,7 +24,7 @@ function Cart() {
         ))}
       </ul>
 
-      <div className="mt-6 space-x-12">
+      <div className="mt-6 flex justify-between gap-4">
         <Button type="primary" to="/order/new">
           Order pizzas
         </Button>
