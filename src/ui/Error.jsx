@@ -6,9 +6,9 @@ function Error() {
   const error = useRouteError();
 
   return (
-    <div>
+    <div className="py-8 text-center">
       <h1>Something went wrong 😢</h1>
-      <p>{error.data || error.message}</p>
+      <p className="p-2 font-medium">{error.data || error.message}</p>
       <LinkButton onClick={() => navigate(-1)}>&larr; Go back</LinkButton>
     </div>
   );
